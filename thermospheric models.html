@@ -1,0 +1,904 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>thermospheric models</title></head><body>
+
+<a href="http://www.inpe.br"><img style="border: 0px solid ; width: 990px; height: 130px;" alt="" src="topo_inpe.jpg"></a>
+
+<center>
+<div style="text-align: center;">
+</div>
+<table style="width: 700px; text-align: left;" border="0" cellpadding="8" cellspacing="1">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <div style="text-align: center;"> <span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;"><a href="http://www2.dem.inpe.br/val/">Home</a> - <a href="../biografia.html">Biografia</a> - <a href="../cursos_inpe/default.htm">Cursos</a> - <a href="../orientacao.html">Orientações</a> - <a href="../publicacoes/index.html">Publicações</a> - <a href="../projetos/projetos.html">Projetos</a></span><br>
+      </div>
+      <span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><big style="font-weight: bold;"><big><big>A
+(huge) collection of interchangeable empirical models to compute
+      </big></big></big><big style="font-weight: bold;"><big><big>the
+thermosphere </big></big></big><big style="font-weight: bold;"><big><big>density,
+temperature and composition</big></big></big><br>
+      </div>
+      <big style="font-weight: bold;"><big><big> </big></big></big><br>
+      <span style="font-family: ms sans serif;">Thermosphere models are
+usually employed in space activities such as
+mission planning and analysis, orbit determination, attitude control
+design, maneuvering planning, fuel estimation and orbit decay studies,
+among others.<br>
+&nbsp;<br>
+The Orbital Dynamics group of INPE coded </span><span style="font-family: ms sans serif;">during the 80&#8217;s several
+thermospheric </span><span style="font-family: ms sans serif;">computer
+programs in FORTRAN. Those models were based on
+Jacchia works (70 and 77) and their analytical versions,
+since Jacchia assumed numeric integration of the diffusion equation in
+order to compute density and composition as function of height. Numeric
+integration normally demands computing time, and therefore analytical
+means &#8220;fast&#8221;</span><span style="font-family: ms sans serif;"> in this
+sense</span><span style="font-family: ms sans serif;">. All the models were recently converted to
+C/C++ by Carrara, because FORTRAN
+compilers seem to be </span><span style="font-family: ms sans serif;">quickly
+      </span><span style="font-family: ms sans serif;">vanishing
+nowadays.<br>
+      <br>
+Presently there is a set of 6 thermospheric models:<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;">Jacchia 70 (in
+fact it is almost the same as the 64 model)<br>
+          </span></li>
+        <li><span style="font-family: ms sans serif;">Jacchia-Roberts</span></li>
+        <li><span style="font-family: ms sans serif;">Jacchia 77</span></li>
+        <li><span style="font-family: ms sans serif;">LaFontaine-Hughes</span></li>
+        <li><span style="font-family: ms sans serif;">Jacchia-Lineberry
+(77 model)</span></li>
+        <li><span style="font-family: ms sans serif;">MSIS-86 (C code)</span></li>
+      </ul>
+      <span style="font-family: ms sans serif;">All
+these programs are
+interchangeable, which means that any model, except MSIS, can be
+easily changed to any other. Of course there are several models not
+included in this list, but, with few exceptions, they do not satisfy
+the requirement of "interchangeability" since they need different input data,
+like, for instance, the Jacchia-Bowman JB2006 and JB2008 models (<a href="#Bowman_2006">Bowman et al. 2008a</a>, <a href="#Bowman_2008">2008b</a>), which considers the effect of solar UV radiation.<br>
+      <br>
+The interchangeable models (except MSIS again) present 3 entry points:<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;">Static profile
+(function of the exospheric
+temperature and height)</span></li>
+        <li><span style="font-family: ms sans serif;">Static density
+(same as static profile, but
+function of solar flux F10.7 and geomagnetic activity besides height).</span></li>
+        <li><span style="font-family: ms sans serif;">Dynamic model.</span></li>
+      </ul>
+      <span style="font-family: ms sans serif;"> In order to make it
+easy to remember and to exchange between models, they
+were </span><span style="font-family: ms sans serif;">respectively </span><span style="font-family: ms sans serif;">named as:<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;"><span style="font-weight: bold;">x</span>mowei</span></li>
+        <li><span style="font-family: ms sans serif;"><span style="font-weight: bold;">x</span>smade</span></li>
+        <li><span style="font-family: ms sans serif;"><span style="font-weight: bold;">x</span>sdamo</span></li>
+      </ul>
+      <span style="font-family: ms sans serif;"> both in FORTRAN and C,
+where <span style="font-weight: bold;">x</span> can be &#8220;j&#8221; for <span style="font-weight: bold;">J</span>acchia 70, &#8220;r&#8221; for <span style="font-weight: bold;">R</span>obert&#8217;s analytical version of
+Jacchia 70, &#8220;i&#8221; for Jacchia 77 model (numerical <span style="font-weight: bold;">i</span>ntegration),
+&#8220;a&#8221; for the <span style="font-weight: bold;">a</span>nalytical version
+from LaFontaine and Hughes of Jacchia&#8217;s
+77, and &#8220;p&#8221; for the Lineberry <span style="font-weight: bold;">p</span>olynomial
+analytical version of
+Jacchia&#8217;s 77. &#8220;mowei&#8221; stands for MOecular WEIght, since the static
+profile produces mainly the molecular weight as function of height.
+&#8220;smade&#8221; means Static Model for Atmospheric DEnsity, and finally &#8220;sdamo&#8221;
+is an acronymic for Static and Dynamic Atmospheric MOdel, as seem in
+Table 1.<br>
+      <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;">Table 1 - Profile, Static and
+Dynamic functions<br>
+      <br>
+      </span><span style="font-family: ms sans serif;"></span></div>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Static
+profile</span></span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Static
+density</span></span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Dynamic
+model</span></span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">Jacchia 70</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">jmowei</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;"></span>jsmade</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;"></span>jsdamo</span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">Jacchia-Roberts</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">rmowei</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;"></span>rsmade</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">rsdamo</span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">Jacchia 77</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">imowei</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">ismade</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">isdamo</span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">LaFontaine-Hughes</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">amowei</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">asmade</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">asdamo</span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">Jacchia-Lineberry (77 model)</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">pmowei</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">psmade</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">psdamo</span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;">MSIS-86</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">---<br>
+            </span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">---</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">msdamo (C only)<br>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;"><br>
+FORTRAN versions were compiled and tested with FORTRAN&nbsp;
+Powerstation 4 and&nbsp; Compact Visual Fortran 6 on Windows XP. C
+versions were implemented and tested
+with MS Visual C++ Express running on Windows XP.</span><span style="font-family: ms sans serif;"> Parameters and usage of all these
+functions can be found in comments in the source
+code, or in <a href="#Carrara_1990">Carrara, 1990</a> (in portuguese).
+Very short descriptions of these models are presented bellow. <br>
+</span><span style="font-family: MS Sans Serif;" lang="EN-US"><a href="http://sol.spacenvironment.net/%7EJB2008/pubs/AIAA_2008-6438_JB2008_Model.pdf"></a></span><span style="font-family: MS Sans Serif;"></span><span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big style="font-weight: bold;"><big>Jacchia&#8217;s
+70.</big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+Jacchia produced his first model in 1964 (<a href="#Jacchia_1964">Jacchia, 1964</a> - subroutine ADEN). An improved
+version appeared later on <a href="#Jacchia_1972">CIRA 72</a>.<br>
+      <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Jacchia-Roberts</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+Soon after the first Jacchia&#8217;s model, Roberts (<a href="#Roberts">Roberts, 1971</a>) produced an analytical
+version.<br><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Jacchia&#8217;s 77</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+Jacchia improved his model with recently (at that time) satellite
+observations and orbit measuring. The <a href="#Jacchia_1977">77&#8217;s</a> integrates the diffusion
+equation for each individual atmospheric component rather than the mean
+molecular weight, unlike the preceding model. The version available
+here was coded by <a href="#Mattos">Mattos in 1984</a>, in
+FORTRAN</span><span style="font-family: ms sans serif;">.<br>
+      <br>
+</span><div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">LaFontaine-Hughes</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+LaFontaine and Hughes (<a href="#Lafontaine">LaFontaine and Hughes, 1983</a>) presented their analytical version of Jacchia&#8217;s
+77 model in 83. Again Mattos coded it in FORTRAN.<br>
+      <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Jacchia-Lineberry</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+Lineberry suggested that the static profile could be approximated by a
+truncated McLaurin serie. The original version made by Mueller (<a href="#Mueller">Mueller, 1982</a>) was
+based on the <a href="#Jacchia_1972">Jacchia&#8217;s 70</a>. In 1984 <a href="#Mattos">Mattos</a> produced a Jacchia-Lineberry
+version based on the 77&#8217;s model. </span><span style="font-size: 12pt; font-family: &quot;MS Sans Serif&quot;;" lang="EN-US">Unfortunately
+the author didn&#8217;t publish it (except by
+an oral presentation in a conference &#8211; Mattos, 1984)</span><span style="font-family: ms sans serif;">, but a brief description of the
+work appeared in a portuguese
+publication of INPE (<a href="#Carrara_1990">Carrara, 1990</a>).<br>
+      </span><br>
+<div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">MSIS-86</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"> <br>
+There are several &#8220;MSIS&#8221; models, namely the MSIS-86, MSISE-90 and
+NRLMSIS-00. They can be easily found and downloaded at <a href="http://ccmc.gsfc.nasa.gov/modelweb/">Goddard NASA&#8217;s
+Model Web</a>
+. Above 120 km they are
+essentially the same, since major differences occur at low altitudes.
+They were coded, naturally, in FORTRAN. Some C/C++ versions can be
+found on net, but it seems that there is no C version for 86&#8217;s model,
+except by those converted with f2c, which leaves lots of junk in the
+code. MSIS models were produced by Hedin (<a href="#CIRA_1986">CIRA, 1986</a>; <a href="#Hedin_1987">Hedin, 1987</a>) and
+coded in
+Fortran by D. Bilitza. The version available here is the C version of
+MSIS-86, converted to C by Carrara (manually, no f2c). Sorry, there is
+no manual yet available for C version, but the parameters are almost
+identical
+to the Fortran
+version.<br>
+      <br>
+</span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Model Parameters</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;"></span></big></big></span></div>
+      <span style="font-family: ms sans serif;"><br>
+Although some models has it's own parameters and output, an interface </span><span style="font-family: ms sans serif;">function
+      </span><span style="font-family: ms sans serif;">was created so as to make them interchangeable both in input
+and output parameters. Tables 2 and 3 presented below show those parameters
+and a simplified explanation of each. You may refer to specific model documentation for a deeper explanation.<br>
+      <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;">Table 2 - Thermospheric model input parameters</span><span style="font-family: ms sans serif;"><span style="font-weight: bold;"></span></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"><br>
+      </span>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="text-align: center; font-weight: bold; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">Par</span></td>
+            <td style="text-align: center; font-weight: bold;"><span style="font-family: ms sans serif;">Type</span></td>
+            <td style="text-align: center; font-weight: bold;"><span style="font-family: ms sans serif;">Meaning</span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">static</span><br style="font-weight: bold;">
+            <span style="font-weight: bold;">profile</span><br>
+            </span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">static</span><br style="font-weight: bold;">
+            <span style="font-weight: bold;">density</span><br>
+            </span></td>
+            <td style="text-align: center; font-weight: bold; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;">dynamic<br>
+model</span></td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(204, 255, 255); text-align: center;"><span style="font-family: ms sans serif;">tmp</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">double</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">exospheric temperature, Kelvin</span><br>
+            </td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="background-color: rgb(214, 255, 214);"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(204, 255, 255); text-align: center;"><span style="font-family: ms sans serif;">alt</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">double</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">local geocentric altitude, meters (90000 to 2000000)</span></td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><br>
+            </td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">sa</span></td>
+            <td><span style="font-family: ms sans serif;">array, double, 3 components</span><span style="font-family: ms sans serif;"><br>
+            </span></td>
+            <td><span style="font-family: ms sans serif;">1- local right ascension, </span><span style="font-family: ms sans serif;">radians (0 to 2.*pi)</span><br>
+            <span style="font-family: ms sans serif;">2- local declination (geocentric latitude), </span><span style="font-family: ms sans serif;">radians (0 to 2.*pi)<br>
+3- local geocentric altitude, meters (90000 to 2000000)<br>
+            </span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">su</span></td>
+            <td><span style="font-family: ms sans serif;">array, double, 2 components</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">1- Sun right ascension, radians (0 to 2.*pi).<br>
+2- </span><span style="font-family: ms sans serif;">Sun declination, radians (-pi to pi)</span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">sf</span></td>
+            <td><span style="font-family: ms sans serif;">array, double, 3 components</span></td>
+            <td><span style="font-family: ms sans serif;">1- daily solar flux F10.7, Jensen<br>
+2- averaged daily flux, Jensen<br>
+3- 3 hourly planetary geomagnetic index Kp, according to model specific definition.<br>
+            </span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">mjd</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">double</span></td>
+            <td><span style="font-family: ms sans serif;">modified Julian date referred to 1950.0</span><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">dayf</span></td>
+            <td><span style="font-family: ms sans serif;">double</span></td>
+            <td><span style="font-family: ms sans serif;">UTC time, seconds</span><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">gsti</span></td>
+            <td><span style="font-family: ms sans serif;">double</span></td>
+            <td><span style="font-family: ms sans serif;">Greenwich sidereal time, radians (</span><span style="font-family: ms sans serif;">0 to 2.*pi)</span></td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><br>
+            </td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><br>
+            </td>
+            <td style="background-color: rgb(214, 255, 214); text-align: center;"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;">Table 2 - Thermospheric model output parameters</span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"><br>
+      </span>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="font-weight: bold; text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">Par</span></td>
+            <td style="font-weight: bold; text-align: center;"><span style="font-family: ms sans serif;">Type</span></td>
+            <td style="font-weight: bold; text-align: center;"><span style="font-family: ms sans serif;">Meaning</span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">static</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">profile</span></span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">static</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">density</span><br>
+            </span></td>
+            <td style="text-align: center; font-weight: bold; background-color: rgb(214, 255, 214);"><span style="font-family: ms sans serif;">dynamic<br>
+model</span></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">tp</span></td>
+            <td><span style="font-family: ms sans serif;">array, double, 2 components<br>
+            </span></td>
+            <td><span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;">1- </span><span style="font-family: ms sans serif;">exospheric temperature, Kelvin.</span><br>
+            <span style="font-family: ms sans serif;">2- local temperature, Kelvin<br>
+            </span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">ad</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">array, double, 6 components<br>
+            </span></td>
+            <td><span style="font-family: ms sans serif;">1- </span><span style="font-family: ms sans serif;">log10 of Helium number-density<br>
+2- </span><span style="font-family: ms sans serif;">log10 of molecular Oxigen number-density<br>
+            </span><span style="font-family: ms sans serif;">3- </span><span style="font-family: ms sans serif;">log10 of molecular Nitrogen number-density<br>
+            </span><span style="font-family: ms sans serif;">4- </span><span style="font-family: ms sans serif;">log10 of Argon number-density<br>
+            </span><span style="font-family: ms sans serif;">5- </span><span style="font-family: ms sans serif;">log10 of atomic Oxigen number-density<br>
+            </span><span style="font-family: ms sans serif;">6- </span><span style="font-family: ms sans serif;">log10 of atomic Hydrogen number-density</span><br>
+            </td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">wmol</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">double</span></td>
+            <td><span style="font-family: ms sans serif;">thermospheric mean molecular weight, kg/kgmol.</span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+          <tr>
+            <td style="text-align: center; background-color: rgb(204, 255, 255);"><span style="font-family: ms sans serif;">dens</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">double</span><br>
+            </td>
+            <td><span style="font-family: ms sans serif;">thermospheric density, kg/m<sup>3</sup></span><span style="font-family: ms sans serif;"></span></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+            <td style="text-align: center; background-color: rgb(214, 255, 214);"><img style="width: 30px; height: 30px;" alt="" src="Green_check.png"></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;">&nbsp; <br>
+MSIS dynamic model has its own parameters. To make it compatible to
+Jacchia models, some changes in its parameters had to be made. The sf
+parameter of the msdamo function must have 7 components. Normally you do not need to provide the values of the components </span><span style="font-family: ms sans serif;">4 to 7</span><span style="font-family: ms sans serif;">, and the third one has to be the daily geomagnetic amplitude
+Ap instead of the 3-hourly Kp. If you modify the sw (switch) array (see
+MSIS-86 specific documentation), then you must provide 6
+components of sf (2 to 7). The output values of MSIS also differs from all the
+other models. MSIS computes the atomic Nitrogen (N) number-density,
+while Jacchia models don't. The N number-density contributes to the
+density and molecular weight of the parameters wmol and dens,
+but the ad output array does not return its value. You may change it in
+the source code if you wish.<br>
+      </span><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;"></span></big></big></span><span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Download Models</span></big></big></span><br>
+      <span style="font-family: ms sans serif;"></span></div>
+      <span style="font-family: ms sans serif;"><br>
+All
+the libraries have the source code and all the necessary files to run a
+test sample. They are zip compressed. Please download and
+expand it at your project folder.<br>
+      <br>
+The FORTRAN versions come with the following files:<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;">A sample main
+program (xxxx_test.for)</span></li>
+        <li><span style="font-family: ms sans serif;">The thermospheric
+model library</span></li>
+        <li><span style="font-family: ms sans serif;">A common library <span style="font-weight: bold;">atsu.cpp</span> or <span style="font-weight: bold;">atsu.for</span> for models based on
+Jacchia's 77, and<br>
+          </span></li>
+        <li><span style="font-family: ms sans serif;">Three data files
+corresponding to the output of the Profile, Static and Dynamic
+functions.</span></li>
+      </ul>
+      <span style="font-family: ms sans serif;">Additionally, C
+versions bring<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;">A common header <span style="font-weight: bold;">atmodels.h</span> for all the models,
+except MSIS.</span></li>
+        <li><span style="font-family: ms sans serif;">A model specific
+header (like jac70.h, jac77.h or lafon.h, for instance). </span></li>
+      </ul>
+      <span style="font-family: ms sans serif;">
+      </span>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;">
+            <div style="text-align: center;"><span style="font-family: ms sans serif;">&nbsp; Model</span></div>
+            </td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">FORTRAN</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">C/C++ </span></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif; font-weight: bold;">Jacchia's 70</span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="jac70f.zip"><span style="font-family: ms sans serif;">jac70f.zip</span></a>
+            </td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="jac70c.zip"><span style="font-family: ms sans serif;">jac70c.zip</span></a>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif; font-weight: bold;">Jacchia-Roberts</span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="roberf.zip"><span style="font-family: ms sans serif;">roberf.zip</span></a><br>
+</td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="roberc.zip"><span style="font-family: ms sans serif;">roberc.zip</span></a><br>
+</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif; font-weight: bold;">Jacchia's 77</span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="jac77f.zip"><span style="font-family: ms sans serif;">jac77f.zip</span></a>
+            </td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="jac77c.zip"><span style="font-family: ms sans serif;">jac77c.zip</span></a>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif; font-weight: bold;">LaFontaine-Hughes</span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="lafonf.zip"><span style="font-family: ms sans serif;">lafonf.zip</span></a><br>
+</td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="lafonc.zip"><span style="font-family: ms sans serif;">lafonc.zip</span></a>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif; font-weight: bold;">Jacchia-Lineberry (77 model)</span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="linebf.zip"><span style="font-family: ms sans serif;">linebf.zip</span></a><br>
+</td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="linebc.zip"><span style="font-family: ms sans serif;">linebc.zip</span></a>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the </span></span><span style="font-family: ms sans serif;"><span style="font-weight: bold;">MSIS-86</span><br>
+            </span></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="http://ccmc.gsfc.nasa.gov/modelweb/"><span style="font-family: ms sans serif;">link</span></a>
+            </td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="msisc.zip"><span style="font-family: ms sans serif;">msisc.zip</span></a><br>
+</td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big style="font-weight: bold;"><big>Solar
+Flux Data File</big></big></span><br>
+      </div>
+      <span style="font-family: ms sans serif;"><br>
+All the thermospheric models shown above depend on the mean and observed solar flux
+at 10.7 cm wave length at a given date. The flux varies with solar
+activity, which presents a 10.6 years cycle. </span><span style="font-size: 12pt; font-family: &quot;MS Sans Serif&quot;;" lang="EN-US">The
+Dominion Radio Astrophysical Observatory (<a href="#DRAO">DRAO,
+2011</a>) measures the flux daily. The data is available for download at
+the
+Observatory site. <br style="">
+      </span><span style="font-family: ms sans serif;"><br>
+During solar storms, the solar wind deflects the geomagnetic field,
+which causes a significant heating in the thermospheric molecules.
+This effect is named geomagnetic activity and is measured by the
+International Service of Geomagnetic Indices (<a href="#ISGI">ISGI, 2011</a>), which also
+make it available for download. <br>
+      <br>
+Both the solar flux and geomagnetic activity are compiled and stored in
+a single file by the Space Physics Interactive Data Resources (<a href="#SPDIR">SPDIR,
+2011</a>), branch of the National Geophysic Data Center. The data can be
+found at
+this link:<br>
+      </span><span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><a href="ftp://ftp.ngdc.noaa.gov/STP/GEOMAGNETIC_DATA/INDICES/KP_AP/">ftp://ftp.ngdc.noaa.gov/STP/GEOMAGNETIC_DATA/INDICES/KP_AP/</a></span><br>
+      </div>
+      <span style="font-family: ms sans serif;"><br>
+Nevertheless, the mean values of the solar flux can't be found anywhere.<br>
+      <br>
+So, in order to get a single computation of the thermospheric
+properties, one should find the daily solar flux, the geomagnetic
+indices and needs also to compute the mean flux, which depends on the
+thermospheric model. To make it easy to you, all this data and the
+program that generates it is available here for download - you may
+see it at next sections.<br>
+      <br>
+The
+data file stores the geomagnetic activity, the mean solar flux as
+well as the observed and adjusted daily fluxes. Jacchia (<a href="#Jacchia_1964">Jacchia 1964</a>, <a href="#Jacchia_1977">1977</a>) didn't mention
+if the mean is performed on the observed or adjusted fluxes. To make
+things worse, there is some indirect evidence that the mean is
+"centered" on the day of computation, which means that the today's
+thermospheric temperature depends on the tomorrow's flux!!!! Even
+considering that this doesn't make sense, the file brings the
+"centered" mean values computed in two different ways: a gaussian
+mean, according to Jacchia's 77 model, and an arithmetic mean, adopted
+by the Jacchia's 70 and derived models. The gaussian mean uses a standard deviation of </span><span style="font-family: ms sans serif;">70
+days </span><span style="font-family: ms sans serif;">and is computed on +/- 3 sd interval, or 420
+days plus the computed day. The arithmetic mean is performed in +/- 3
+solar rotations (27 days each), or 163 days, including the centered
+day. Both were calculated with the observed flux.</span><span style="font-family: MS Sans Serif;"><br>
+      <br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Solar Flux Data File Download</span></big></big></span><br>
+      </div>
+      <span style="font-family: ms sans serif;"> <br>
+The solar flux data file - flux_mean.dat - stores the following data in
+ASCII format:<br>
+      <br>
+      </span>
+      <div style="margin-left: 40px;"><span style="font-family: ms sans serif;">1st record:<br>
+      </span>
+      <div style="margin-left: 40px;">
+      <ul>
+        <li><span style="font-family: ms sans serif;">Modified Julian
+date (referred to 1950.0) of the first record (normally Jan, 1st,
+1958). Integer, bytes 1-5<br>
+          </span></li>
+        <li><span style="font-family: ms sans serif;">1 blank space
+(column 6)<br>
+          </span></li>
+        <li><span style="font-family: ms sans serif;">Modified Julian
+date of the last record</span><span style="font-family: ms sans serif;">.
+Integer, bytes 7-11</span></li>
+        <li><span style="font-family: ms sans serif;">36 blank spaces
+in columns 12 to 47 (this is necessary to allow direct record readings)<br>
+          </span></li>
+      </ul>
+      </div>
+      </div>
+      <span style="font-family: ms sans serif;"> </span>
+      <div style="margin-left: 40px;"><span style="font-family: ms sans serif;">Remaining records<br>
+      </span>
+      <div style="margin-left: 40px;">
+      <ul>
+        <li><span style="font-family: ms sans serif;">Modified Julian
+date (referred to 1950.0) of the record, bytes 1-5</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 0 hour UTC, bytes 6-7</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 3 hour UTC, bytes 8-9</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 6 hour UTC, bytes 10-11</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 9 hour UTC, bytes 12-13</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 12 hour UTC, bytes 14-15</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 15 hour UTC, bytes 16-17</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 18 hour UTC, bytes 18-19</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary 3 hour
+range index kp for 21 hour UTC, bytes 20-21</span></li>
+        <li><span style="font-family: ms sans serif;">Sum of the 8
+values of kp, bytes 22-24</span></li>
+        <li><span style="font-family: ms sans serif;">Planetary
+equivalent daily amplitude Ap, bytes 25-27</span></li>
+        <li><span style="font-family: ms sans serif;">Observed daily
+solar flux at 10.7 cm, bytes 28-32</span></li>
+        <li><span style="font-family: ms sans serif;">Daily solar flux
+adjusted to 1 Astronomical Unit, bytes 33-37</span></li>
+        <li><span style="font-family: ms sans serif;">Gaussian mean of
+the solar flux, according to Jacchia (Jacchia, 1977), bytes 38-42</span></li>
+        <li><span style="font-family: ms sans serif;">Arithmetic mean
+of the solar flux, according to Jacchia (Jacchia, 1964), bytes 43-47<br>
+          </span></li>
+      </ul>
+      </div>
+      </div>
+      <br>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><span style="font-weight: bold;">Download
+the mean solar flux data file: </span></span><span style="font-family: ms sans serif;"><span style="font-weight: bold;">1958-1-1 to 2008-12-31</span></span></td>
+            <td style="vertical-align: top; text-align: center; background-color: rgb(255, 255, 51);"><span style="font-family: ms sans serif;"><a href="flux_mean.dat">flux_mean.dat</a> - <a href="flux_mean.zip">flux_mean.zip</a><br>
+            </span></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;"></span><br>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Solar Flux library</span></big></big></span><br>
+      </div>
+      <span style="font-family: ms sans serif;"><br>
+The
+flux data can be retrieved from the data archive by providing the
+date and the day fraction in seconds. The date shall be given in
+modified Julian date referred to 1950.0. Functions to convert the
+date (day, month and year) to and from
+modified Julian date and to compute the Greenwich sidereal time were
+provided in the package</span><span style="font-family: ms sans serif;">.
+The library also have functions to retrieve the
+observed and mean data of a given day, and to provide the proper
+values to compute the thermospheric properties according to Jacchia's
+70 and 77 models. You may want to see the header comments in the
+package
+in order to know how to use it. An example main program is also
+provided. Feel free to fit it to your needs.<br>
+      <br>
+The package contains:<br>
+      </span>
+      <ul>
+        <li><span style="font-family: ms sans serif;">A sample main
+program (soflud_test.for)</span></li>
+        <li><span style="font-family: ms sans serif;">The function
+sfluxd, to retrieve the data of a given date from the mean solar flux data file
+(flux_mean.dat),</span></li>
+        <li><span style="font-family: ms sans serif;">A function -
+sfdj70 - to retrieve the observed, mean and geomagnetic activity of a
+given date according to Jacchia's 70 model.<br>
+          </span></li>
+        <li><span style="font-family: ms sans serif;">A function -
+sfdj77 - to retrieve the observed, mean and geomagnetic activity of a
+given date according to Jacchia's 77 model.</span></li>
+        <li><span style="font-family: ms sans serif;">A function - gst
+- to calculate the Greenwich sidereal time (required by Jacchia's 77
+model and its analytical versions).</span></li>
+        <li><span style="font-family: ms sans serif;">A function - djm
+- to calculate the modified Julian date from a given date.</span></li>
+        <li><span style="font-family: ms sans serif;">A function -
+djminv - to calculate the date given the modified Julian date.</span></li>
+        <li><span style="font-family: ms sans serif;">The functions
+open_sfdf and close_sfdf to open and to close the solar flux data file
+(flux_mean.dat) - C/C++ only. The FORTRAN version of the package doesn't need these functions.<br>
+          </span></li>
+      </ul>
+      
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif;"><br>
+            </span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">FORTRAN</span></td>
+            <td style="vertical-align: top; text-align: center;"><span style="font-family: ms sans serif;">C/C++</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: ms sans serif; font-weight: bold;">Download the
+mean solar flux library</span><br>
+            </td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="sflibf.zip"><span style="font-family: ms sans serif;">sflibf.zip</span></a></td>
+            <td style="vertical-align: top; background-color: rgb(255, 255, 51); text-align: center;"><a href="sflibc.zip"><span style="font-family: ms sans serif;">sflibc.zip</span></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: ms sans serif;"> <br>
+      </span><span style="font-size: 12pt; font-family: &quot;MS Sans Serif&quot;;" lang="EN-US">Additionally
+a sample program (solflud_test) was included in the package, as well as
+its output data file.</span><br>
+      <span style="font-family: ms sans serif;"><br>
+      </span>
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">Solar Flux Data File update program</span></big></big></span><br>
+      </div>
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><br>
+      <span style="font-family: MS Sans Serif;">Once you have
+successfully compiled and run the
+thermospheric model with solar flux data file, it is time to update it
+with fresh new values. You may update it once a year, since the
+observed flux
+and geomagnetic indexes are also available yearly. So, go to </span></span><span style="font-family: MS Sans Serif;"></span><a style="font-family: MS Sans Serif;" href="ftp://ftp.ngdc.noaa.gov/STP/GEOMAGNETIC_DATA/INDICES/KP_AP/">ftp://ftp.ngdc.noaa.gov/STP/GEOMAGNETIC_DATA/INDICES/KP_AP/</a><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">
+and download the most recent data, probably something like 2011 or
+2012. Since the average values are centered at the date, you need also
+the files for preceeding and succeding years. To compute the 2010 mean values,
+for instance, the 2009 and 2011 files are also required. These files
+shall be renamed so as to include a ".dat" extension. The program
+allows you to input the year of computation, as well as all the
+required information needed to run it properly. You should be advised
+that the solar flux update </span></span><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">file </span></span><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">program doesn't check the input
+data for consistency, and this means that you have to assure that the
+data is provided in right sequential order. After execution, a file <span style="font-weight: bold;">yyyy</span>_m.dat shall be created, where <span style="font-weight: bold;">yyyy</span> is the computation year. Now is
+up to you to append this file to the Solar Flux Data File
+(flux_mean.dat) using an ordinary text editor like Notepad or
+Notepad++. You shall assure that the modified julian date of the yyyy_m
+file first record follows the MJD of the flux_mean file last record. After that you
+have to change manually the first record of the file, in order to update
+the date of the last record (colunms 7 to 11) with the new value. Now
+you may save the new updated flux_mean.dat file.<br>
+      <br>
+      </span></span><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">The package
+provided bellow for download includes also the Windows console .exe
+file. The source code is available in C language only. Unless you want
+to modify it in order to include something new, I recommend you to
+simple run it when you need.<br>
+      <br>
+      </span></span>
+      <table style="text-align: left; width: 800px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">Download the Solar Flux Data File
+update program<br>
+            </span></span></td>
+            <td style="vertical-align: top; text-align: center; background-color: rgb(255, 255, 51);"><a href="solfluxmean.zip"><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">solfluxmean.zip</span></span></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"><br>
+So, that's all for now. Good luck and happy modeling.<br>
+      <br>
+      </span></span>
+      <div style="text-align: right;"><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">Valdemir Carrara, Sep, 22, 2011.</span></span><br>
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"></span></span><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"><a href="http://www2.dem.inpe.br/%7Eval/"><img style="border: 0px solid ; width: 125px; height: 23px;" alt="" src="../endmail.jpg"></a></span></span><br>
+      </div>
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"><br>
+      </span></span><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;">References<br>
+</span></big></big></span><span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;"></span><br>
+      <span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;"><a name="Bowman_2006"></a>Bowman, B. R.; Tobiska, W. K.; Marcos, F. A.; Valladares, C. The JB2006 empirical thermospheric density model. In: <span style="font-weight: bold;">Journal of Atmospheric and Solar-Terrestrial Physics</span>, 70, pp. 774-793, 2008a. Available in: <a href="http://sol.spacenvironment.net/%7EJB2006/pubs/JASTP_Bowman_JB2006_2008.pdf">http://sol.spacenvironment.net/~JB2006/pubs/JASTP_Bowman_JB2006_2008.pdf</a><br>
+      </span><br style="font-family: MS Sans Serif;">
+
+      <span style="font-family: MS Sans Serif;" lang="EN-US"><a name="Bowman_2008"></a>Bowman, B. R.; Tobiska, W. K. Marcos, F. A.;
+Huang, C. Y.; Lin, C. S.; Burke, W. J. </span><span style="font-family: MS Sans Serif;"><span style="" lang="EN-US">A New Empirical
+Thermospheric Density Model JB2008 Using New Solar and Geomagnetic Indices. </span></span><span style="font-family: MS Sans Serif;" lang="EN-US">AIAA/AAS Astrodynamics Specialist
+Conference. <span style="font-weight: bold;">Proceedings</span>. Honolulu, Aug. 2008b. Available in: <a href="http://sol.spacenvironment.net/%7EJB2008/pubs/AIAA_2008-6438_JB2008_Model.pdf">http://sol.spacenvironment.net/~JB2008/pubs/AIAA_2008-6438_JB2008_Model.pdf</a></span><br>
+      <span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;"></span></big></big></span><span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"></span></span><span style="font-family: ms sans serif;"><br>
+      </span><span style="font-family: ms sans serif;"><a name="Carrara_1990"></a>Carrara, V. <a href="http://www2.dem.inpe.br/val/publicacoes/carrara_inpe_5094_rpi_231.pdf"><span style="font-weight: bold;">Implementações de modelos atmosféricos para
+uso em
+propagadores de órbita e atitude</span></a>. S. J. Campos, INPE, maio
+1990
+(INPE-5094-RPI/231).<br>
+      <br>
+      </span><span style="font-family: ms sans serif;"><a name="CIRA_1986"></a>
+CIRA 1986, <span style="font-weight: bold;">Part I: Thermosphere Model</span>,
+D. Rees (ed.), Adv. Space Res.
+Vol. 8, n. 5, n. 6, 1988.<br>
+      </span><br>
+      <span style="font-family: MS Sans Serif;" lang="EN-US"><a name="DRAO"></a>DRAO &#8211;
+Dominion Radio Astrophysical
+Observatory &#8211; Herzberg Institute of Astrophysics. <span style="font-weight: bold;">Solar Radio Monitoring
+Programme</span>. </span><a style="font-family: MS Sans Serif;" href="http://www.drao-ofr.hia-iha.nrc-cnrc.gc.ca/">http://www.drao-ofr.hia-iha.nrc-cnrc.gc.ca</a><span style="font-family: MS Sans Serif;"> 2011.</span><br>
+
+
+      <br>
+      <span style="font-family: ms sans serif;"><a name="Hedin_1987"></a>
+Hedin, A. E. <a href="http://www.agu.org/pubs/crossref/1987/JA092iA05p04649.shtml">MSIS-86
+Thermospheric Model</a>. In: <span style="font-weight: bold;">Jounal
+of Geophysical
+Research</span>, Vol. 92, n. A5, p. 4649-4662, May, 1987.</span><br>
+
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;"></span></span><br>
+      <span style="font-family: MS Sans Serif;" lang="EN-US"><a name="ISGI"></a>ISGI &#8211; International Service of
+Geomagnetic Indices.<span style="font-weight: bold;"> </span></span><span style="font-family: MS Sans Serif; font-weight: bold;">I</span><span style="font-family: MS Sans Serif;"><span style="font-weight: bold;">ndices: Data</span></span><span style="font-family: MS Sans Serif; font-weight: bold;"> </span><a style="font-family: MS Sans Serif;" href="http://isgi.cetp.ipsl.fr/">http://isgi.cetp.ipsl.fr/</a><span style="font-family: MS Sans Serif;">. Access in
+2011.</span><br>
+
+
+
+<br>
+      <span style="font-family: ms sans serif;"><a name="Jacchia_1964"></a>Jacchia, L. G. <a href="http://adsabs.harvard.edu/full/1965SCoA....8..215J"><span style="font-weight: bold;">Static Diffusion Models of the Upper
+Atmosphere With
+Empirical Temperature Profiles</span></a>. Cambridge, MA, SAO, 1964
+(SAO Special
+Report 170).<br>
+      <br><a name="Jacchia_1972"></a>
+Jacchia, L. G. Atmospheric models in the region from 110 to 2000 km.
+In: <span style="font-weight: bold;">COMMITTEE ON SPACE RESEARCH
+(COSPAR). CIRA 1972</span>. Berlim,
+AkademicVerlag, 1972. Part 3, p. 227-338.<br>
+      </span><br>
+      <span style="font-family: ms sans serif;"><a name="Jacchia_1977"></a>
+Jacchia, L. G. <a style="font-weight: bold;" href="http://adsabs.harvard.edu/full/1977SAOSR.375.....J">Thermospheric
+Temperature, Density and Compostion: New
+Models</a>. Cambridge,&nbsp; Ma,&nbsp; SAO, 1977. (SAO Special Report
+No
+375).<br>
+      </span><br>
+      <span style="font-family: ms sans serif;"><a name="Lafontaine"></a>
+Lafontaine, J.; Hughes, P. <a href="http://www.springerlink.com/content/vp15605350n07x56/">An
+Analytic Version of Jacchia's 1977 model
+atmosphere</a>. <span style="font-weight: bold;">Celestial Mechanics</span>,
+29(3-26) 1983.<br>
+      </span><br>
+      <span style="font-family: ms sans serif;"><a name="Mattos"></a>Mattos, B. S.
+Modelamento da Atmosfera Superior da Terra. In: <span style="font-weight: bold;">II
+COLÓQUIO DE DINÂMICA ORBITAL E RESSONÂNCIA GRAVITACIONAL</span>, 1984.
+ATIBAIA-SP.<br>
+      </span><span style="font-family: ms sans serif;"></span><br>
+      <a name="Mueller"></a><span style="font-family: ms sans serif;"></span><span style="font-family: ms sans serif;">Mueller, A. C. <a href="http://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19830012203_1983012203.pdf"><span style="font-weight: bold;">Jacchia-Lineberry upper atmosphere density
+model</span></a>. Huston
+NASA, 1982. (NASA-CR-167824).<br>
+      </span><span style="font-family: ms sans serif;"><big><big><span style="font-weight: bold;"></span></big></big></span><br>
+      <span style="font-family: ms sans serif;"><a name="Roberts"></a>
+Roberts Jr., C. E. <a href="http://www.springerlink.com/content/l431jwg273w08u8g/">An
+analytical model for upper atmospheric densities
+based upon Jacchia's 1970 models</a>. <span style="font-weight: bold;">Celestial
+Mechanics</span>, 4(3/4):368-377,
+Dec. 1971.<br>
+      </span><span style="font-family: MS Sans Serif;" lang="EN-US"></span>
+
+      <span style="font-family: MS Sans Serif;" lang="EN-US"></span><span style="font-size: 12pt; font-family: MS Sans Serif;" lang="EN-US"></span><span style="font-size: 12pt; font-family: MS Sans Serif;"></span><br style="font-family: MS Sans Serif;">
+
+      <span style="font-family: MS Sans Serif;" lang="EN-US"><a name="SPDIR"></a>SPDIR - Space Physics Interactive
+Data Resources - National Geophysical Data Center. <span style="font-weight: bold;">Geomagnetic Indices Data
+Set.</span> </span><a style="font-family: MS Sans Serif;" href="http://spidr.ngdc.noaa.gov/spidr/">http://spidr.ngdc.noaa.gov/spidr/</a><span style="font-family: MS Sans Serif;">
+2011.</span><br style="font-family: MS Sans Serif;">
+
+      <br style="font-family: MS Sans Serif;">
+      
+      <div style="text-align: center;"><span style="font-family: ms sans serif;"><a href="http://www2.dem.inpe.br/val/">Home</a> - <a href="../biografia.html">Biografia</a> - <a href="../cursos_inpe/default.htm">Cursos</a> - <a href="../orientacao.html">Orientações</a> - <a href="../publicacoes/index.html">Publicações</a> - <a href="../projetos/projetos.html">Projetos</a></span><br>
+      </div>
+      <span style="font-family: &quot;MS Sans Serif&quot;;" lang="EN-US"><span style="font-family: MS Sans Serif;">
+<br>
+      </span></span>
+      
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</center>
+
+</body></html>
