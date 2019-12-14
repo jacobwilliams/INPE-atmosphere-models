@@ -1,0 +1,8 @@
+
+
+#######################################################
+
+Original Fortran 77 code from: http://www.dem.inpe.br/~val/atmod/default.html
+
+ATTENTION
+The material provided on this page may be freely used provided that due credit is given to the author (s) and the works are properly referenced.
